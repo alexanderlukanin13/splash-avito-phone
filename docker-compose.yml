@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+
+  splash:
+    image: "scrapinghub/splash:3.2"
+    command: --maxrss 2000
+    mem_limit: 2250m
+    ports:
+      - "127.0.0.1:8050:8050"
