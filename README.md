@@ -25,3 +25,20 @@ It will create output png file `output.png`.
 Expected result: mobile phone is displayed
 
 Actual result: mobile phone is still hidden, as if button wasn't pressed.
+
+Using Jupyter + Splash
+----------------------
+
+Another excellent way to debug Splash is by using Jupyter notebook to execute Lua code manually.
+
+Run it via Docker:
+
+    docker run -p 8888:8888 -it scrapinghub/splash-jupyter
+
+Execute Lua code:
+
+    splash:go("INSERT_URL_HERE")
+
+    splash:runjs("document.getElementsByClassName('item-phone-button')[0].click()")
+    splash:wait(2)
+    splash:png()
