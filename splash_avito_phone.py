@@ -7,7 +7,27 @@ LUA_AVITO_PHONE = """
 function main(splash)
     splash:go(splash.args.url)
     splash:wait(10)
-    splash:runjs("document.getElementsByClassName('item-phone-button')[0].click()")
+    splash:runjs([[
+    
+        var targetNode = document.querySelector("button.item-phone-button");
+        targetNode.textContent = 'FOUND';
+        if (targetNode) {
+            //--- Simulate a natural mouse-click sequence.
+            triggerMouseEvent (targetNode, "mouseover");
+            triggerMouseEvent (targetNode, "mousedown");
+            triggerMouseEvent (targetNode, "mouseup");
+            triggerMouseEvent (targetNode, "click");
+        }
+        else
+            console.log ("*** Target node not found!");
+        
+        function triggerMouseEvent (node, eventType) {
+            var clickEvent = document.createEvent ('MouseEvents');
+            clickEvent.initEvent (eventType, true, true);
+            node.dispatchEvent (clickEvent);
+        }
+    
+    ]])
     splash:wait(10)
     return splash:png()
 end
