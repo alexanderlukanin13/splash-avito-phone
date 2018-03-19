@@ -7,7 +7,25 @@ LUA_AVITO_PHONE = """
 function main(splash)
     splash:go(splash.args.url)
     splash:wait(10)
-    splash:runjs("document.getElementsByClassName('item-phone-button')[0].click()")
+    splash:runjs([[
+        function simulateClick() {
+          var event = new MouseEvent('click', {
+            view: window,
+            bubbles: true,
+            cancelable: true
+          });
+          var cb = document.getElementsByClassName('item-phone-button')[0]; 
+          var cancelled = !cb.dispatchEvent(event);
+          if (cancelled) {
+            // A handler called preventDefault.
+            alert("cancelled");
+          } else {
+            // None of the handlers called preventDefault.
+            alert("not cancelled");
+          }
+        }
+        simulateClick()
+    ]])
     splash:wait(10)
     return splash:png()
 end
