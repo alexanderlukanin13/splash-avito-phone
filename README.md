@@ -18,7 +18,7 @@ Run script:
 
     python3 splash_avito_phone.py <url> -o output.png
 
-Example URL: https://www.avito.ru/himki/kvartiry/1-k_kvartira_32.3_m_44_et._1624064747
+Example URL: https://www.avito.ru/moskva/kvartiry/2-k_kvartira_84_m_412_et._992361048
 
 It will create output png file `output.png`.
 
